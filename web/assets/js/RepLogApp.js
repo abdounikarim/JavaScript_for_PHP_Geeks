@@ -1,5 +1,7 @@
-(function() {
-    var RepLogApp = {
+'use strict';
+
+(function(window, $) {
+    window.RepLogApp = {
         initialize: function ($wrapper) {
             this.$wrapper = $wrapper;
             Helper.initialize($wrapper);
@@ -63,4 +65,4 @@
             return totalWeight;
         }
     };
-})();
+})(window, jQuery);
