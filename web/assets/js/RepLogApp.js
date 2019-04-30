@@ -76,7 +76,8 @@
                 data: JSON.stringify(formData),
                 success: function (data) {
                     // todo
-                    console.log('success');
+                    self._clearForm();
+                    self._addRow(data);
                 },
                 error: function(jqXHR)
                 {
@@ -89,8 +90,7 @@
         _mapErrorsToForm: function (errorData) {
 
             var $form = this.$wrapper.find(this._selectors.newRepForm);
-            $form.find('.js-field-error').remove();
-            $form.find('.form-group').removeClass('has-error');
+            this._removeFormErrors();
 
             $form.find(':input').each(function() {
                 var fieldName = $(this).attr('name');
@@ -105,6 +105,22 @@
                 $wrapper.append($error);
                 $wrapper.addClass('has-error');
             });
+        },
+
+        _removeFormErrors: function() {
+            var $form = this.$wrapper.find(this._selectors.newRepForm);
+            $form.find('.js-field-error').remove();
+            $form.find('.form-group').removeClass('has-error');
+        },
+
+        _clearForm: function () {
+            this._removeFormErrors();
+            var $form = this.$wrapper.find(this._selectors.newRepForm);
+            $form[0].reset();
+        },
+
+        _addRow: function (repLog) {
+            console.log(repLog);
         }
     });
 
